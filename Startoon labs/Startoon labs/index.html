@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gradient Vertical Bar Graph</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
+  <style>
+    .graph-container {
+      border: 1px solid #ccc;
+      width: 400px;
+      height: 200px;
+      position: relative;
+    }
+    .graph-bar {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-image: linear-gradient(to top,#003F73,#008cff,#C2E3FF, #FFFFFF);
+      color: #fff;
+      text-align: center;
+      font-weight: bold;
+      padding: 5px;
+      transition: height 0.3s;
+    }
+    .error-message {
+      color: red;
+      font-weight: bold;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="inputValue">Input Value:</label>
+          <input type="number" class="form-control" id="inputValue">
+        </div>
+        <div class="form-group">
+          <label for="maxValue">Max Value:</label>
+          <input type="number" class="form-control" id="maxValue" value="100">
+        </div>
+        <button class="btn btn-primary" onclick="plotGraph()">Plot</button>
+        <div class="error-message" id="error"></div>
+      </div>
+      <div class="col-md-8">
+        <div class="graph-container">
+          <div class="graph-bar" id="graphBar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    function plotGraph() {
+      var inputValue = parseInt(document.getElementById('inputValue').value);
+      var maxValue = parseInt(document.getElementById('maxValue').value);
+      var graphBar = document.getElementById('graphBar');
+      var errorDiv = document.getElementById('error');
+
+      if (isNaN(inputValue) || isNaN(maxValue)) {
+        errorDiv.innerHTML = 'Please enter valid numeric values.';
+        errorDiv.style.display = 'block';
+        return;
+      }
+
+      if (inputValue > maxValue) {
+        errorDiv.innerHTML = 'Input Value cannot be greater than Max Value.';
+        errorDiv.style.display = 'block';
+        return;
+      }
+
+      errorDiv.style.display = 'none';
+
+      var percentage = (inputValue / maxValue) * 100;
+      graphBar.style.height = percentage + '%';
+      graphBar.innerHTML = inputValue + ' (' + percentage.toFixed(2) + '%)';
+    }
+  </script>
+</body>
+</html>

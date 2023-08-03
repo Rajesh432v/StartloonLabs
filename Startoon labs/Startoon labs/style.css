@@ -1,0 +1,83 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+.seats-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.seats {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.seat {
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  text-align: center;
+  line-height: 50px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.seat.available {
+  background-color: #b5e7a0;
+}
+
+.seat.selected {
+  background-color: #ffcccb;
+}
+
+.seat-description {
+  display: none;
+  position: absolute;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.seat:hover .seat-description {
+  display: block;
+}
+
+.seat-types {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.seat-type {
+  margin-bottom: 10px;
+}
+
+.selected-seats {
+  margin-top: 20px;
+}
+
+#total-price {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #e74c3c;
+}
